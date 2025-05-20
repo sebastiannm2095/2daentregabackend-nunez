@@ -1,0 +1,15 @@
+[
+  {
+    "id": "1745970604117",
+    "title": "Zapatilla",
+    "description": "Zapatilla deportiva",
+    "code": "Z123",
+    "price": 25990,
+    "status": true,
+    "stock": 20,
+    "category": "calzado",
+    "thumbnails": [
+      "zapa1.jpg"
+    ]
+  }
+]
