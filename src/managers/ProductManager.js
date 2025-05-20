@@ -1,8 +1,14 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import fs from 'fs/promises';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export default class ProductManager {
-  constructor(path) {
-    this.path = path;
+  constructor() {
+    this.path = path.join(__dirname, '..', 'data', 'products.json');
   }
 
   async getProducts() {
