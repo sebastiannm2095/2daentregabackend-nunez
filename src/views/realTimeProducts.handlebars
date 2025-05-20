@@ -1,0 +1,44 @@
+<h1>Productos en tiempo real</h1>
+
+<form id="add-form">
+  <input type="text" name="title" placeholder="Título" required />
+  <input type="text" name="description" placeholder="Descripción" required />
+  <input type="text" name="code" placeholder="Código" required />
+  <input type="number" name="price" placeholder="Precio" required />
+  <input type="checkbox" name="status" checked /> Activo
+  <input type="number" name="stock" placeholder="Stock" required />
+  <input type="text" name="category" placeholder="Categoría" required />
+  <input type="text" name="thumbnails" placeholder="Imagen (URL)" />
+  <button type="submit">Agregar producto</button>
+</form>
+
+<ul id="product-list"></ul>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  const socket = io();
+
+  const productList = document.getElementById('product-list');
+  const form = document.getElementById('add-form');
+
+  socket.on('update-products', (products) => {
+    productList.innerHTML = '';
+    products.forEach(p => {
+      productList.innerHTML += `<li>${p.title} - $${p.price} <button onclick="deleteProduct('${p.id}')">Eliminar</button></li>`;
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const product = Object.fromEntries(formData.entries());
+    product.status = formData.get('status') === 'on';
+    product.thumbnails = [product.thumbnails || ''];
+    socket.emit('new-product', product);
+    form.reset();
+  });
+
+  function deleteProduct(id) {
+    socket.emit('delete-product', id);
+  }
+</script>

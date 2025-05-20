@@ -1,15 +1,15 @@
 [
   {
-    "id": "1745970604117",
-    "title": "Zapatilla",
-    "description": "Zapatilla deportiva",
-    "code": "Z123",
-    "price": 25990,
+    "id": "1747783172154",
+    "title": "camiseta",
+    "description": "camiseta colocolo",
+    "code": "02",
+    "price": "27990",
     "status": true,
-    "stock": 20,
-    "category": "calzado",
+    "stock": "2",
+    "category": "camisetas",
     "thumbnails": [
-      "zapa1.jpg"
+      ""
     ]
   }
 ]
